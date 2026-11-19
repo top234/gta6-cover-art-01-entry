@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080">
+  <title>Sunset portrait — a code-drawn sample for Sunset Cover Studio</title>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2b1055"/>
+      <stop offset="0.45" stop-color="#c94b7c"/>
+      <stop offset="0.75" stop-color="#ff7a3d"/>
+      <stop offset="1" stop-color="#ffc46b"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fff3c4"/>
+      <stop offset="0.6" stop-color="#ffd166"/>
+      <stop offset="1" stop-color="#ff8c42" stop-opacity="0.85"/>
+    </radialGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff9a5c"/>
+      <stop offset="1" stop-color="#5b2a86"/>
+    </linearGradient>
+  </defs>
+
+  <!-- sky -->
+  <rect width="1080" height="1080" fill="url(#sky)"/>
+  <!-- sun -->
+  <circle cx="540" cy="470" r="180" fill="url(#sun)"/>
+  <circle cx="540" cy="470" r="230" fill="#ffd166" opacity="0.18"/>
+  <!-- sun reflection streaks on the water -->
+  <rect x="0" y="700" width="1080" height="380" fill="url(#sea)"/>
+  <g fill="#ffe9a8" opacity="0.55">
+    <rect x="470" y="720" width="140" height="10" rx="5"/>
+    <rect x="500" y="760" width="90" height="8" rx="4"/>
+    <rect x="440" y="810" width="200" height="10" rx="5"/>
+    <rect x="490" y="870" width="110" height="9" rx="4"/>
+    <rect x="430" y="940" width="230" height="11" rx="5"/>
+    <rect x="480" y="1010" width="130" height="9" rx="4"/>
+  </g>
+
+  <!-- distant skyline -->
+  <g fill="#3a1650">
+    <rect x="0" y="560" width="90" height="140"/>
+    <rect x="90" y="600" width="70" height="100"/>
+    <rect x="160" y="520" width="60" height="180"/>
+    <rect x="220" y="590" width="110" height="110"/>
+    <rect x="330" y="540" width="55" height="160"/>
+    <rect x="385" y="610" width="80" height="90"/>
+    <rect x="640" y="600" width="90" height="100"/>
+    <rect x="730" y="540" width="60" height="160"/>
+    <rect x="790" y="590" width="110" height="110"/>
+    <rect x="900" y="520" width="60" height="180"/>
+    <rect x="960" y="580" width="120" height="120"/>
+  </g>
+  <g fill="#ffd166" opacity="0.85">
+    <rect x="175" y="560" width="12" height="14"/><rect x="175" y="600" width="12" height="14"/>
+    <rect x="240" y="620" width="12" height="14"/><rect x="280" y="620" width="12" height="14"/>
+    <rect x="915" y="560" width="12" height="14"/><rect x="915" y="600" width="12" height="14"/>
+    <rect x="745" y="580" width="12" height="14"/><rect x="660" y="630" width="12" height="14"/>
+  </g>
+
+  <!-- palm tree, left -->
+  <g fill="#1c0b2e">
+    <path d="M180 1080 C 190 900 175 760 150 640 L 178 630 C 205 760 220 900 215 1080 Z"/>
+    <path d="M160 650 C 90 600 40 610 10 660 C 80 660 130 680 165 665 Z"/>
+    <path d="M165 645 C 130 570 70 550 20 585 C 85 600 130 625 160 660 Z"/>
+    <path d="M170 640 C 200 560 260 530 320 555 C 260 575 215 605 180 655 Z"/>
+    <path d="M172 638 C 230 590 300 590 350 630 C 290 630 230 645 178 658 Z"/>
+    <path d="M168 648 C 150 580 170 520 220 490 C 190 540 175 590 172 655 Z"/>
+  </g>
+  <!-- palm tree, right, smaller -->
+  <g fill="#1c0b2e">
+    <path d="M930 1080 C 938 950 930 850 912 770 L 932 762 C 950 850 958 950 955 1080 Z"/>
+    <path d="M922 775 C 870 735 830 740 805 775 C 855 775 895 790 925 782 Z"/>
+    <path d="M925 772 C 955 715 1000 700 1040 720 C 995 735 960 755 930 782 Z"/>
+    <path d="M926 770 C 940 720 980 690 1030 695 C 990 715 955 740 932 780 Z"/>
+  </g>
+
+  <!-- person, back view, centre foreground -->
+  <g fill="#160826">
+    <ellipse cx="540" cy="470" rx="118" ry="128"/>
+    <path d="M540 560 C 620 560 690 640 720 760 C 745 870 750 970 748 1080 L 332 1080 C 330 970 335 870 360 760 C 390 640 460 560 540 560 Z"/>
+    <!-- hair sweep -->
+    <path d="M430 430 C 460 350 620 350 650 430 C 640 380 600 340 540 340 C 480 340 440 380 430 430 Z"/>
+  </g>
+  <!-- rim light on the person's edge -->
+  <g fill="none" stroke="#ffd166" stroke-width="7" stroke-linecap="round" opacity="0.9">
+    <path d="M648 420 C 680 480 690 540 682 600"/>
+    <path d="M700 700 C 720 800 728 920 726 1020"/>
+  </g>
+
+  <!-- birds -->
+  <g fill="#1c0b2e">
+    <path d="M300 300 q 18 -16 36 0 q 18 -16 36 0" stroke="#1c0b2e" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M720 250 q 14 -12 28 0 q 14 -12 28 0" stroke="#1c0b2e" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M820 360 q 11 -10 22 0 q 11 -10 22 0" stroke="#1c0b2e" stroke-width="5" fill="none" stroke-linecap="round"/>
+  </g>
+</svg>
