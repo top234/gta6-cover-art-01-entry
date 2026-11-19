@@ -1,0 +1,175 @@
+/* Sunset Cover Studio — editor chrome. The cover itself is drawn on canvas. */
+@font-face {
+  font-family: "Anton";
+  src: url("./fonts/Anton-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("./fonts/BebasNeue-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #14091f;
+  color: #f5ead9;
+  font-family: "Bebas Neue", "Arial Narrow", sans-serif;
+  letter-spacing: 0.04em;
+}
+
+body.shot-mode { background: #000; }
+body.shot-mode .topbar,
+body.shot-mode .controls,
+body.shot-mode .hint { display: none; }
+body.shot-mode .layout { display: block; padding: 0; }
+body.shot-mode .stage { padding: 0; }
+body.shot-mode #cover {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  max-height: none;
+  object-fit: fill;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.topbar {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding: 14px 22px;
+  background: linear-gradient(90deg, #2b1055, #7597de 55%, #ff6a3d);
+  border-bottom: 3px solid #ffd76a;
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand-mark {
+  font-family: "Anton", sans-serif;
+  font-size: 22px;
+  color: #14091f;
+  background: #ffd76a;
+  padding: 2px 10px;
+  transform: skewX(-8deg);
+}
+.brand-name {
+  font-family: "Anton", sans-serif;
+  font-size: 26px;
+  letter-spacing: 0.05em;
+  color: #fff;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.45);
+}
+.tagline { margin: 0; font-size: 19px; color: #ffe9c9; }
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 20px;
+  padding: 20px 22px 28px;
+  max-width: 1460px;
+  margin: 0 auto;
+}
+.stage { min-width: 0; }
+#cover {
+  width: 100%;
+  height: auto;
+  max-height: calc(100vh - 150px);
+  object-fit: contain;
+  display: block;
+  background: #000;
+  border-radius: 6px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  cursor: crosshair;
+}
+.hint { margin: 10px 2px 0; font-size: 18px; color: #d9b8ff; }
+
+.controls { display: flex; flex-direction: column; gap: 16px; }
+.group {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 215, 106, 0.35);
+  border-radius: 8px;
+  padding: 14px;
+}
+.group h2 {
+  margin: 0 0 10px;
+  font-family: "Anton", sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.08em;
+  color: #ffd76a;
+  text-transform: uppercase;
+}
+.file-btn {
+  display: inline-block;
+  background: #ff6a3d;
+  color: #fff;
+  padding: 9px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 19px;
+}
+.file-btn:hover { background: #ff8a5c; }
+.thumbs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.thumbs img {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+.thumbs img.selected { border-color: #ffd76a; }
+.note { margin: 8px 0 0; font-size: 16px; line-height: 1.35; color: #cbb8e8; }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn-row button,
+.export-btn {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 19px;
+  letter-spacing: 0.06em;
+  padding: 8px 13px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 215, 106, 0.5);
+  background: rgba(255, 255, 255, 0.08);
+  color: #f5ead9;
+  cursor: pointer;
+}
+.btn-row button:hover { background: rgba(255, 255, 255, 0.18); }
+.btn-row button.on {
+  background: #ffd76a;
+  color: #14091f;
+  border-color: #ffd76a;
+}
+.field { display: block; font-size: 18px; margin-bottom: 10px; }
+.field input[type="text"] {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  padding: 8px 10px;
+  font-family: "Anton", sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  color: #14091f;
+  background: #fff3dd;
+  border: 2px solid #ffd76a;
+  border-radius: 6px;
+}
+.field input[type="range"] { width: 100%; accent-color: #ff6a3d; }
+.export-btn {
+  width: 100%;
+  margin-top: 4px;
+  background: #ff2e63;
+  border-color: #ff2e63;
+  color: #fff;
+  font-family: "Anton", sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+.export-btn:hover { background: #ff4d7e; }
+
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+}

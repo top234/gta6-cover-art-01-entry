@@ -3,89 +3,80 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sunset Cover Studio — GTA-style cover art maker</title>
-<link rel="stylesheet" href="./style.css">
+<title>Sunset Cover Studio — GTA-style cover maker</title>
+<link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-<main class="app">
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">SCS</span>
+    <span class="brand-name">Sunset Cover Studio</span>
+  </div>
+  <p class="tagline">Turn your photo and a caption into GTA-style cover art. Photos never leave your machine.</p>
+</header>
+<main class="layout">
+  <section class="stage" aria-label="Cover preview">
+    <canvas id="cover" width="1080" height="1080"></canvas>
+    <p class="hint" id="panelHint">Click a panel to select it, then crop it with the sliders.</p>
+  </section>
   <aside class="controls" aria-label="Cover controls">
-    <header>
-      <h1>Sunset Cover Studio</h1>
-      <p>Your photo + a caption, turned into GTA-style cover art. Runs fully offline — photos never leave your machine.</p>
-    </header>
-
-    <section>
+    <section class="group">
       <h2>Photos</h2>
-      <label class="file-label">Add your photos
-        <input id="photos" type="file" accept="image/*" multiple>
-      </label>
-      <ul id="library" class="library"></ul>
-      <button id="reset" type="button" class="ghost">Restore sample photos</button>
+      <label class="file-btn" for="photoInput">Add photos from your machine</label>
+      <input id="photoInput" type="file" accept="image/*" multiple hidden>
+      <div class="thumbs" id="thumbs"></div>
+      <p class="note">Click a thumbnail to put that photo in the selected panel. The sample portrait loads by default.</p>
     </section>
-
-    <section>
-      <h2>Layout</h2>
-      <div class="row" role="group" aria-label="Panel layout">
-        <button type="button" class="layout-btn" data-layout="three">Three panels</button>
-        <button type="button" class="layout-btn" data-layout="two">Two panels</button>
-        <button type="button" class="layout-btn" data-layout="four">Four panels</button>
-        <button type="button" class="layout-btn" data-layout="single">Single</button>
+    <section class="group">
+      <h2>Panels</h2>
+      <div class="btn-row" id="layoutRow">
+        <button type="button" data-layout="trio" class="on">3 panels</button>
+        <button type="button" data-layout="duo">2 panels</button>
+        <button type="button" data-layout="quad">4 panels</button>
+        <button type="button" data-layout="solo">Full photo</button>
       </div>
     </section>
-
-    <section>
+    <section class="group">
       <h2>Colour grade</h2>
-      <div class="row" role="group" aria-label="Colour grade">
-        <button type="button" class="grade-btn" data-grade="sunset">Sunset</button>
-        <button type="button" class="grade-btn" data-grade="neon">Neon Night</button>
-        <button type="button" class="grade-btn" data-grade="gold">Golden Hour</button>
+      <div class="btn-row" id="gradeRow">
+        <button type="button" data-grade="sunset" class="on">Sunset</button>
+        <button type="button" data-grade="neon">Neon night</button>
+        <button type="button" data-grade="gold">Golden hour</button>
       </div>
     </section>
-
-    <section>
-      <h2>Words</h2>
-      <label>Caption
-        <input id="caption" type="text" maxlength="48" value="SUNSET HEIST" autocomplete="off">
+    <section class="group">
+      <h2>Caption</h2>
+      <label class="field">Main caption
+        <input id="titleInput" type="text" value="SUNSET HEIST" maxlength="24" autocomplete="off">
       </label>
-      <label>Sub-caption
-        <input id="subcaption" type="text" maxlength="48" value="VICE CITY • 2026" autocomplete="off">
-      </label>
-    </section>
-
-    <section>
-      <h2>Selected panel</h2>
-      <p class="hint">Click a panel on the cover to select it, drag to pan, scroll to zoom.</p>
-      <div id="panel-controls"></div>
-      <label>Zoom <span id="zoom-val">1.00×</span>
-        <input id="zoom" type="range" min="1" max="3" step="0.05" value="1">
-      </label>
-      <label>Pan left–right <span id="panx-val">0</span>
-        <input id="panx" type="range" min="-0.4" max="0.4" step="0.01" value="0">
-      </label>
-      <label>Pan up–down <span id="pany-val">0</span>
-        <input id="pany" type="range" min="-0.4" max="0.4" step="0.01" value="0">
+      <label class="field">Sub-caption
+        <input id="subtitleInput" type="text" value="VICE CITY" maxlength="32" autocomplete="off">
       </label>
     </section>
-
-    <section>
+    <section class="group">
+      <h2>Crop selected panel</h2>
+      <label class="field">Zoom
+        <input id="zoomInput" type="range" min="1" max="2.5" step="0.01" value="1">
+      </label>
+      <label class="field">Pan sideways
+        <input id="panXInput" type="range" min="-200" max="200" step="1" value="0">
+      </label>
+      <label class="field">Pan up / down
+        <input id="panYInput" type="range" min="-200" max="200" step="1" value="0">
+      </label>
+    </section>
+    <section class="group">
       <h2>Export</h2>
-      <label>Size
-        <select id="size">
-          <option value="1080x1080" selected>Square 1080 × 1080</option>
-          <option value="1080x1350">Portrait 1080 × 1350</option>
-          <option value="1920x1080">Wide 1920 × 1080</option>
-        </select>
-      </label>
-      <button id="export" type="button" class="primary">Export PNG</button>
-      <p id="status" role="status"></p>
-      <p class="fineprint">No upload, no account, no network. The sample portrait is drawn by code.</p>
+      <div class="btn-row" id="sizeRow">
+        <button type="button" data-size="1080x1080" class="on">1080 × 1080</button>
+        <button type="button" data-size="1080x1350">1080 × 1350</button>
+        <button type="button" data-size="1920x1080">1920 × 1080</button>
+      </div>
+      <button type="button" id="exportBtn" class="export-btn">Export PNG</button>
+      <p class="note" id="exportNote">Ready.</p>
     </section>
   </aside>
-
-  <section class="stage" aria-label="Cover preview">
-    <canvas id="cover" width="1080" height="1080" aria-label="The cover"></canvas>
-  </section>
 </main>
-<script type="module" src="./src/main.js"></script>
+<script type="module" src="./main.js"></script>
 </body>
 </html>
